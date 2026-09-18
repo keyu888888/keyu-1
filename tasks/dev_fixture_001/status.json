@@ -1,0 +1,13 @@
+{
+  "contract_version": "0.1.0",
+  "job_id": "dev_fixture_001",
+  "stage": "completed",
+  "progress": 100,
+  "message": "20-second demo video composed",
+  "artifacts": {
+    "final_video": "tasks/dev_fixture_001/edit/final_demo.mp4"
+  },
+  "recoverable": true,
+  "next_action": null,
+  "error": null
+}

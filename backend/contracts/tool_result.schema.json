@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://redream.local/schemas/tool_result.schema.json",
+  "title": "Member 4 Tool Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "success",
+    "stage",
+    "artifacts",
+    "elapsed_s",
+    "fallback_used",
+    "recoverable",
+    "error_code",
+    "message"
+  ],
+  "properties": {
+    "contract_version": { "const": "0.1.0" },
+    "success": { "type": "boolean" },
+    "stage": {
+      "enum": [
+        "object_reconstructed",
+        "depth_estimated",
+        "scene_built",
+        "white_model_rendered",
+        "core_video_generated",
+        "final_video_composed"
+      ]
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "elapsed_s": { "type": "number", "minimum": 0 },
+    "fallback_used": { "type": "boolean" },
+    "recoverable": { "type": "boolean" },
+    "error_code": {
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "E401_MASK_INVALID",
+        "E402_SAM3D_FAILED",
+        "E403_ASSET_IMPORT_FAILED",
+        "E404_SCENE_BUILD_FAILED",
+        "E405_CAMERA_UNSAFE",
+        "E406_RENDER_FAILED",
+        "E407_VIDEO_API_FAILED",
+        "E408_COMPOSE_FAILED"
+      ]
+    },
+    "message": { "type": "string" },
+    "details": { "type": "object" }
+  }
+}
+

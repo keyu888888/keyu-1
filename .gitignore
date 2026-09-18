@@ -1,0 +1,67 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Model weights and local environments
+checkpoints/
+*.ckpt
+*.safetensors
+*.pth
+*.pt
+.conda/
+tools/
+
+# Third-party source checkouts (install separately; do not vendor them here)
+sam-3d-objects-main/
+.git-upload/
+
+# Generated task data
+tasks/*/input/*
+tasks/*/analysis/*
+tasks/*/depth/*
+tasks/*/assets/*
+tasks/*/blender/*
+tasks/*/control/*
+tasks/*/generation/*
+tasks/*/edit/*
+tasks/*/logs/*
+tasks/*/pipeline_result.json
+
+# Keep task skeletons and contracts
+!tasks/*/**/.gitkeep
+!tasks/*/scene_spec.json
+!tasks/*/status.json
+
+# Blender and video outputs
+*.blend
+*.blend1
+*.glb
+*.gltf
+*.ply
+*.mp4
+*.mov
+*.avi
+*.wav
+*.mp3
+
+# Downloaded archives and generic generated-output folders
+*.zip
+*.7z
+outputs/
+renders/
+cache/
+logs/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

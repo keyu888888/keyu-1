@@ -1,0 +1,57 @@
+{
+  "contract_version": "0.1.0",
+  "job_id": "dev_fixture_001",
+  "hero_image": "sam-3d-objects-main/notebook/images/shutterstock_stylish_kidsroom_1640806567/image.png",
+  "hero_reason": "本地开发夹具，仅用于验证自动建场和镜头链路",
+  "scene_type": "development_fixture",
+  "quality_score": 1.0,
+  "reconstruction_budget": 1,
+  "targets": [
+    {
+      "id": "fixture_object",
+      "label": "SAM 3D仓库示例对象",
+      "priority": 1,
+      "representation": "sam3d",
+      "source_image": "sam-3d-objects-main/notebook/images/shutterstock_stylish_kidsroom_1640806567/image.png",
+      "mask_path": "sam-3d-objects-main/notebook/images/shutterstock_stylish_kidsroom_1640806567/14.png",
+      "asset_path": "sam-3d-objects-main/notebook/meshes/human_object/3Dfy_results/0.glb",
+      "reason": "复用仓库随附真实资产，验证GPU到位前的下游执行链",
+      "position_uv": [0.5, 0.55]
+    }
+  ],
+  "background": {
+    "method": "depth_layers",
+    "layer_count": 3,
+    "depth_path": null,
+    "layer_paths": []
+  },
+  "camera": {
+    "template": "arc_push",
+    "duration_s": 4,
+    "angle_deg": 8,
+    "travel_ratio": 0.08,
+    "fallback": ["linear_dolly", "two_d_motion"]
+  },
+  "render": {
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "engine": "BLENDER_EEVEE_NEXT"
+  },
+  "generation": {
+    "provider": "mock",
+    "prompt": "开发夹具，不调用外部视频接口。",
+    "allow_cached_success": true,
+    "max_retries": 0
+  },
+  "edit": {
+    "duration_s": 20,
+    "title": "Re Dream 开发夹具",
+    "music_path": null,
+    "output_path": "tasks/dev_fixture_001/edit/final_demo.mp4"
+  },
+  "style": "white_model",
+  "music_mood": "none",
+  "risk_notes": ["仅用于开发验证，不作为比赛素材"]
+}
+

@@ -1,0 +1,20 @@
+{
+  "contract_version": "0.1.0",
+  "success": true,
+  "stage": "white_model_rendered",
+  "artifacts": {
+    "scene_preview": "tasks/demo_001/blender/scene_preview.png",
+    "camera_path": "tasks/demo_001/blender/camera_path.png",
+    "control_video": "tasks/demo_001/control/white_model.mp4"
+  },
+  "elapsed_s": 12.5,
+  "fallback_used": false,
+  "recoverable": true,
+  "error_code": null,
+  "message": "白模约束视频已生成",
+  "details": {
+    "camera_template": "arc_push",
+    "safety_check": "passed"
+  }
+}
+

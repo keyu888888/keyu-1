@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://redream.local/schemas/scene_spec.schema.json",
+  "title": "ReDream Scene Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "job_id",
+    "hero_image",
+    "reconstruction_budget",
+    "targets",
+    "background",
+    "camera",
+    "render",
+    "generation",
+    "edit"
+  ],
+  "properties": {
+    "contract_version": { "const": "0.1.0" },
+    "job_id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$" },
+    "hero_image": { "type": "string", "minLength": 1 },
+    "hero_reason": { "type": "string" },
+    "scene_type": { "type": "string" },
+    "quality_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "reconstruction_budget": { "type": "integer", "minimum": 0, "maximum": 1 },
+    "targets": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "representation", "source_image", "reason"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,64}$" },
+          "label": { "type": "string", "minLength": 1 },
+          "priority": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "representation": { "enum": ["sam3d", "image_card", "proxy"] },
+          "source_image": { "type": "string", "minLength": 1 },
+          "mask_path": { "type": ["string", "null"] },
+          "asset_path": { "type": ["string", "null"] },
+          "reason": { "type": "string" },
+          "position_uv": {
+            "type": "array",
+            "prefixItems": [
+              { "type": "number", "minimum": 0, "maximum": 1 },
+              { "type": "number", "minimum": 0, "maximum": 1 }
+            ],
+            "items": false
+          }
+        }
+      }
+    },
+    "background": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "layer_count"],
+      "properties": {
+        "method": { "enum": ["depth_layers", "single_card"] },
+        "layer_count": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "depth_path": { "type": ["string", "null"] },
+        "layer_paths": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["template", "duration_s", "angle_deg", "travel_ratio", "fallback"],
+      "properties": {
+        "template": { "enum": ["linear_dolly", "arc_push"] },
+        "duration_s": { "type": "number", "minimum": 4, "maximum": 6 },
+        "angle_deg": { "type": "number", "minimum": 0, "maximum": 12 },
+        "travel_ratio": { "type": "number", "minimum": 0.01, "maximum": 0.12 },
+        "fallback": {
+          "type": "array",
+          "items": { "enum": ["linear_dolly", "arc_push", "two_d_motion"] },
+          "minItems": 1
+        }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "fps", "engine"],
+      "properties": {
+        "width": { "const": 1280 },
+        "height": { "const": 720 },
+        "fps": { "const": 24 },
+        "engine": { "const": "BLENDER_EEVEE_NEXT" }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "prompt", "allow_cached_success"],
+      "properties": {
+        "provider": { "enum": ["h3", "seedance", "mock"] },
+        "prompt": { "type": "string" },
+        "allow_cached_success": { "type": "boolean" },
+        "max_retries": { "type": "integer", "minimum": 0, "maximum": 2 }
+      }
+    },
+    "edit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration_s", "title", "music_path", "output_path"],
+      "properties": {
+        "duration_s": { "type": "number", "minimum": 20, "maximum": 25 },
+        "title": { "type": "string", "maxLength": 80 },
+        "music_path": { "type": ["string", "null"] },
+        "output_path": { "type": "string", "minLength": 1 }
+      }
+    },
+    "style": { "type": "string" },
+    "music_mood": { "type": "string" },
+    "risk_notes": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

@@ -1,0 +1,60 @@
+{
+  "contract_version": "0.1.0",
+  "job_id": "demo_001",
+  "hero_image": "tasks/demo_001/input/hero.jpg",
+  "hero_reason": "待团队提供自有主演示素材后填写",
+  "scene_type": "campus_architecture",
+  "quality_score": 0.8,
+  "reconstruction_budget": 1,
+  "targets": [
+    {
+      "id": "main_object",
+      "label": "主演示对象",
+      "priority": 1,
+      "representation": "sam3d",
+      "source_image": "tasks/demo_001/input/hero.jpg",
+      "mask_path": "tasks/demo_001/analysis/main_object_mask.png",
+      "asset_path": null,
+      "reason": "10天Demo只重建一个轮廓完整且能产生视差的关键对象",
+      "position_uv": [0.5, 0.55]
+    }
+  ],
+  "background": {
+    "method": "depth_layers",
+    "layer_count": 3,
+    "depth_path": "tasks/demo_001/depth/depth_raw.png",
+    "layer_paths": []
+  },
+  "camera": {
+    "template": "arc_push",
+    "duration_s": 5,
+    "angle_deg": 8,
+    "travel_ratio": 0.08,
+    "fallback": ["linear_dolly", "two_d_motion"]
+  },
+  "render": {
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "engine": "BLENDER_EEVEE_NEXT"
+  },
+  "generation": {
+    "provider": "h3",
+    "prompt": "保持原始主体与场景外观，镜头沿白模轨迹缓慢推进，避免新增物体和大幅形变。",
+    "allow_cached_success": true,
+    "max_retries": 1
+  },
+  "edit": {
+    "duration_s": 25,
+    "title": "Re Dream 映想世界",
+    "music_path": null,
+    "output_path": "tasks/demo_001/edit/final_demo.mp4"
+  },
+  "style": "cinematic_warm",
+  "music_mood": "healing",
+  "risk_notes": [
+    "主演示素材尚未提供",
+    "SAM 3D GPU与权重尚未就绪"
+  ]
+}
+
